@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.al.play.composesdk
 
 import android.os.Bundle
@@ -7,11 +9,13 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardElevation
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,6 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.al.play.composesdk.ui.theme.ComposeSDKTheme
+import com.moengage.inapp.MoEInAppHelper
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +44,11 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    override fun onStart() {
+        super.onStart()
+        MoEInAppHelper.getInstance().showInApp(this)
+    }
 }
 
 @Preview(showBackground = true)
@@ -47,7 +57,8 @@ private fun scrollBox() {
     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
         repeat(30) {
             Card(
-                modifier = Modifier.padding(16.dp)) {
+                onClick = {},
+                modifier = Modifier.padding(16.dp).fillMaxWidth()) {
                 Text(text = it.toString(),
                     fontSize = 22.sp,
                     )
