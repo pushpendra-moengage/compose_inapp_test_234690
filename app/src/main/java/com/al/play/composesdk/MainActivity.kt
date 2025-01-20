@@ -4,12 +4,15 @@ package com.al.play.composesdk
 
 import android.os.Bundle
 import android.provider.CalendarContract.Colors
+//import android.widget.EditText
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -18,6 +21,7 @@ import androidx.compose.material3.CardElevation
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -37,8 +41,8 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { _ ->
 //                    Greeting(
 //                        name = "Android",
-//                        modifier = Modifier.padding(innerPadding)
-//                    ),
+//                        modifier = Modifier.padding(16.dp)
+//                    )
                     scrollBox()
                 }
             }
@@ -55,10 +59,29 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun scrollBox() {
     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+//        EditText(
+//
+//            modifier = Modifier.padding(16.dp),
+//            text="",
+//            onTextChanged = { },
+//            onFocusChanged = {
+//            }
+//        )
+        
+        Spacer(modifier = Modifier.fillMaxWidth().height(64.dp))
+
+        TextField(
+            value = "",
+            onValueChange = {  },
+            label = { Text("Label") }
+        )
+
         repeat(30) {
             Card(
                 onClick = {},
-                modifier = Modifier.padding(16.dp).fillMaxWidth()) {
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth()) {
                 Text(text = it.toString(),
                     fontSize = 22.sp,
                     )
